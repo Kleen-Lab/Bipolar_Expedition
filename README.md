@@ -5,10 +5,10 @@
 ## Package setup. 
 
 ### 1. Required software 
-MATLAB (tested with Version 2023-2025)  
-Chronux toolbox 
-R (tested with version 4.4)
-Python (version 3)
+MATLAB (tested with Version 2023-2025).    
+Chronux toolbox.   
+R (tested with version 4.4).   
+Python (version 3). 
 
 ### 2. Other dependencies 
 None
