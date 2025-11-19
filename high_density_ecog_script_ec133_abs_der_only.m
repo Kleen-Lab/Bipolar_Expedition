@@ -22,7 +22,7 @@ fs = 512; % sampling rate Hz
 
 data_root = 'data';
 datadir = data_root;
-folderDataBase = '/data';
+folderDataBase = '/data/results';
 
 fileSpikes = fullfile(datadir, 'taggedspikes_April2022.mat');
 folderBaseline = fullfile(datadir, 'baseline-high-density-data');

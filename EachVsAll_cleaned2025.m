@@ -79,7 +79,7 @@ function [mDiff, mb_m, mARb_m, Mbp_distance] = EachVsAll_cleaned2025_fxn(pt)
     
     nch=size(d,2); 
     
-    an_electrode_info_path = fullfile(data_root, 'bipolar_expedition', 'AN_ElectrodeInfoTDT.xlsx');
+    an_electrode_info_path = fullfile(data_root, 'AN_ElectrodeInfoTDT.xlsx');
     [bpN,bpT]=xlsread(an_electrode_info_path, pts{p});
     [em,eleclabels,anatomy]=getelecs(pts{p},2);
     
