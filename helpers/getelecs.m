@@ -7,7 +7,7 @@ do_opscea_check = false;
 %	disp("It seems that the $KLEEN_DATA environment variable is not set, you might want to set it and mount the data.");
 %end
 
-data_root = '/Users/devonkrish/DataMountSH/data/';
+data_root = '/data/';
 
 mainpath=fullfile(data_root, 'imaging');
 % if exist(mainpath,'dir')==0
@@ -19,12 +19,9 @@ mainpath=fullfile(data_root, 'imaging');
 % end
 
 
-
-
-
 %disp(mainpath);
 
-if ~exist(mainpath,'dir'); mainpath='/Volumes/KLEEN_DRIVE/imaging'; cprintf('_r','using KLEEN_DRIVE...'); end
+mainpath='/data/imaging'
 
 ptdir=fullfile(mainpath, pt);
 filepath=fullfile('elecs');

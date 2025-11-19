@@ -14,7 +14,7 @@ import pandas as pd
 # In[2]:
 
 
-df = pd.read_excel('/Users/devonkrish/Desktop/IED/_BipolarReref/baseline-high-density-data/tableoutputfile.xlsx')
+df = pd.read_excel('data/tableoutputfile.xlsx')
 df
 
 

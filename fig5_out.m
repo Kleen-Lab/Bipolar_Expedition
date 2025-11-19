@@ -14,7 +14,7 @@ function fig5_out
     set(gcf, 'Color', 'white');
     
     % requires these files saved from 
-    load('stg_Devon_183_plotdata.mat');
+    load('/data/results/stg_Devon_183_plotdata.mat');
     
     
     subplot1 = subplot('Position', [0, 0.58, 0.385, 0.365]);

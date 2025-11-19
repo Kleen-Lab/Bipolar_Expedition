@@ -1,10 +1,7 @@
 function [elecmatrix,eleclabels,anatomy]=getOPSCEAelecs(pt,clin1TDT2MNI3)
 
 	%data_root = getenv("KLEEN_DATA");
-    data_root='/Volumes/SPIKE/data/';
-	if strcmp(data_root, '')
-		disp("It seems that the $KLEEN_DATA environment variable is not set. You might want to set it and mount the data.")
-	end
+    data_root='/data/';
 	mainpath=fullfile(data_root, 'opscea');      %path for OPSCEA folders
 	% if exist(mainpath,'dir')==0
 	% 	mainpath='/Volumes/KLEEN_DRIVE/OPSCEA'; 

@@ -18,12 +18,12 @@ twoSidedPerm = true;
 
 fs = 512; % sampling rate Hz
 
-data_root = getenv("KLEEN_DATA");
+data_root = '/data/';
 datadir = data_root;
-folderDataBase = getenv("KLEEN_RESULTS");
+folderDataBase = '/data/results';
 
-fileSpikes = fullfile('/Users/davidcaldwell/Box/KLEENLAB/David', 'taggedspikes_April2022.mat');
-folderBaseline = fullfile('/Users/davidcaldwell/Box/KLEENLAB/David/baseline-high-density-data');
+fileSpikes = fullfile('/data/taggedspikes_April2022.mat');
+folderBaseline = fullfile('/data/baseline-high-density-data');
 filesFolderBaseline = dir(folderBaseline);
 namesFilesBaseline = {filesFolderBaseline(:).name};
 

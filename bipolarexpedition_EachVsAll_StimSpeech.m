@@ -19,11 +19,11 @@ doanglerange=0;
 sizeoffont=12;
 
 savePlots = true;
-folderFigures = '~/Desktop/bipolar_results/'; if ~exist(folderFigures); mkdir(folderFigures); end
+folderFigures = '/results'; if ~exist(folderFigures); mkdir(folderFigures); end
 
 cm=cool(6); cm(1,:)=[0 0 0];
 % datadir=['/Volumes/KLEEN_DRIVE/bipolar_expedition/'];
-datadir=['/data/bipolar_expedition/'];
+datadir=['/data/'];
 ptdatadir=[datadir 'baseline-high-density-data/'];
 u=dir(ptdatadir); uptbl={}; for i=1:length(u); uname=u(i).name; uptbl{i,1}=uname(1:end-28); end; uptbl(1:2)=[]; clear i u uname
 
@@ -152,7 +152,7 @@ d=d(:,:,windowstocheck); clear Straces_allch; %free up RAM by getting rid of wha
 M=sq(mean(M,4));
 
 %can save files for plotting later in the fig5_out file
-save(['stg_Devon_' pt(3:end) .mat'], 'dSpeech', 'dNoSpeechNoStim', 'dStim','mSpeech', 'mNoSpeechNoStim', 'mStim', 'Mbpdist', 'frx', '-v7.3');
+save(['data/results/stg_Devon_' pt(3:end) .mat'], 'dSpeech', 'dNoSpeechNoStim', 'dStim','mSpeech', 'mNoSpeechNoStim', 'mStim', 'Mbpdist', 'frx', '-v7.3');
 
 
 %% now that we have bipolar pairs and spectra, we can select the channels we are interested in

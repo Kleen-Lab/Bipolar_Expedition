@@ -50,6 +50,10 @@ fig5_out;
 high_density_ecog_script;
 postHocStats;
 
+%% Figures 6: part B - specific subject 
+
+high_density_ecog_script_ec133_abs_der_only;
+
 %% Supplementary Linear figure (all patients individually)
 
 linearSupp;

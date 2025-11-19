@@ -14,7 +14,6 @@ function [M,Mrefave,Mbp_distance,frx,Mc,Mbp_angle]=bpspectra_EachVsAll_2025(d,sf
 %   frx is the frequency index for M (3rd dimension)
 
 %just getting frequency index
- addpath('/userdata/akalra/maxone/matlab_utilities-main/misc/');
  [~,frx]=spectrogramjk_chronuxmtfft(zeros(1,size(d,1)),sfx,frxrange,[.5,1],0); 
  
  nwindtocheck=size(d,3);

@@ -22,7 +22,7 @@ for i = 1:length(pts_grids)
 
     subplot(4,4,subplot_pos(i))
 
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/fix_grids_tent_' pts_grids{i} '.mat']);
+    load(['/data/results/fix_grids_tent_' pts_grids{i} '.mat']);
     
     % Store this patient's mDiff in the 3D array
     all_mDiff(:,:,i) = mDiff;
@@ -40,7 +40,7 @@ end
 % Compute the nanmean across the 3rd dimension (across patients)
 mDiff_mean = nanmean(all_mDiff, 3);
 
-save('/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/m_eva_grids.mat', 'mDiff_mean');
+save('/data/results/m_eva_grids.mat', 'mDiff_mean');
 
 
 figure;
@@ -86,7 +86,7 @@ for i = 1:length(pts_strips)
     title(pts_names{i});
 
     if ~(strcmp(pts_strips{i}, 'EC181') || strcmp(pts_strips{i}, 'EC220') || strcmp(pts_strips{i}, 'EC162')) 
-        load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/fix_strips_tent_' pts_strips{i} '.mat']);
+        load(['/data/results/fix_strips_tent_' pts_strips{i} '.mat']);
         
         % Store this patient's mDiff in the 3D array
         all_mDiff_strips(:,:,i) = mDiff;
@@ -141,7 +141,7 @@ figure;
 % Load all mDiff matrices from depths
 for i = 1:length(pts_depths)
     subplot(4,4,i)
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/fix_depths_tent_' pts_depths{i} '.mat']);
+    load(['/data/results/fix_depths_tent_' pts_depths{i} '.mat']);
     
     % Store this patient's mDiff in the 3D array
     all_mDiff_depths(:,:,i) = mDiff;
@@ -216,7 +216,7 @@ pts_grids = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_grids = nan(100, 43, length(pts_grids));
 
 for i = 1:length(pts_grids)
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/fix_grids_tent_' pts_grids{i} '.mat']);
+    load(['/data/results/fix_grids_tent_' pts_grids{i} '.mat']);
     all_mDiff_grids(:,:,i) = mDiff;
 end
 
@@ -229,7 +229,7 @@ pts_strips = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_strips = nan(100, 43, length(pts_strips));
 
 for i = 1:length(pts_strips)
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/fix_strips_tent_' pts_strips{i} '.mat']);
+    load(['/data/results/fix_strips_tent_' pts_strips{i} '.mat']);
     all_mDiff_strips(:,:,i) = mDiff;
 end
 
@@ -242,7 +242,7 @@ pts_depths = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_depths = nan(100, 43, length(pts_depths));
 
 for i = 1:length(pts_depths)
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/fix_depths_tent_' pts_depths{i} '.mat']);
+    load(['/data/results/fix_depths_tent_' pts_depths{i} '.mat']);
     all_mDiff_depths(:,:,i) = mDiff;
 end
 

@@ -20,7 +20,7 @@ fig = figure(5);
 set(fig, 'Position', [100, 100, 1400, 900]);
 set(gcf, 'Color', 'white');
 
-load('/Volumes/Maxone/bipolar_expedition/EC175_fig3_data.mat');
+load('/data/results/EC175_fig3_data.mat');
 
 subplot1 = subplot('Position', [0.375, 0.68, 0.24, 0.24]);
 elecsbrain(pt,0,[1:256],[0 0 0],'l',0,3.3,2); alpha 1;
@@ -45,7 +45,7 @@ clear pt binz toplot frx binsz Mbp_distance cm_distance
 
 % EC183 ADDING ON
 
-load('/Volumes/Maxone/bipolar_expedition/EC183_fig3_data.mat');
+load('/data/results/EC183_fig3_data.mat');
 
 subplot4 = subplot('Position', [0.67, 0.68, 0.25, 0.25]);
 elecsbrain(pt,0,[1:256],[0 0 0],'l',0,3.3,2); alpha 1;

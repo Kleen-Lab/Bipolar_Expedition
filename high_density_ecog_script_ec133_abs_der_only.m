@@ -20,12 +20,12 @@ twoSidedPerm = true;
 
 fs = 512; % sampling rate Hz
 
-data_root = getenv("KLEEN_DATA");
+data_root = 'data';
 datadir = data_root;
-folderDataBase = getenv("KLEEN_RESULTS");
+folderDataBase = '/data';
 
-fileSpikes = fullfile('/Users/davidcaldwell/Box/KLEENLAB/David', 'taggedspikes_April2022.mat');
-folderBaseline = fullfile('/Users/davidcaldwell/Box/KLEENLAB/David/baseline-high-density-data');
+fileSpikes = fullfile(datadir, 'taggedspikes_April2022.mat');
+folderBaseline = fullfile(datadir, 'baseline-high-density-data');
 filesFolderBaseline = dir(folderBaseline);
 namesFilesBaseline = {filesFolderBaseline(:).name};
 
@@ -42,11 +42,6 @@ ptsTotal = {'EC133'};
 
 patientsVetted = ptsTotal;
 
-%folderDataBase = '/Volumes/KLEEN_DRIVE/David/Bipolar project/output';
-%folderFiguresCell = {fullfile(folderDataBase,'LL20'),fullfile(folderDataBase,'LL40'),fullfile(folderDataBase,'LL100'),fullfile(folderDataBase,'absDer')};
-%cellAbsDeriv = {false,false,false,true};
-%cellLL = {true,true,true,false};
-
 folderFiguresCell = {fullfile(folderDataBase, 'absDer')};
 cellAbsDeriv = {true};
 cellLL = {false};
@@ -54,7 +49,6 @@ cellLL = {false};
 cellLLnum = {0.02,0.04,0.1,0};
 
 saveName = {'absDer'};
-%saveName = {'absDer_v3'};
 
 for index = 1:length(folderFiguresCell)
 

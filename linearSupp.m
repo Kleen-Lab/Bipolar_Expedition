@@ -29,7 +29,7 @@ figure(1); set(gcf,'color','w','position',[372 1 1297 1337]);
 comps = {'grids', 'depths', 'strips'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/LINEARRERUN/' comps{c} '_trm_data.mat']);
+    load(['/data/results/' comps{c} '_trm_data.mat']);
     trm_data_all{c} = trm_data;
 end
 
@@ -158,7 +158,7 @@ figure(2); set(gcf,'color','w','position',[372 1 1297 1337]);
 comps = {'grids', 'depths', 'strips'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/LINEARRERUN/' comps{c} '_trm_data.mat']);
+    load(['/data/results/' comps{c} '_trm_data.mat']);
     trm_data_all{c} = trm_data;
 end
 
@@ -311,7 +311,7 @@ figure(3); set(gcf,'color','w','position',[372 1 1297 400]);
 comps = {'grids', 'depths', 'strips'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/LINEARRERUN/' comps{c} '_trm_data.mat']);
+    load(['/data/results/' comps{c} '_trm_data.mat']);
     trm_data_all{c} = trm_data;
 end
 
@@ -433,7 +433,7 @@ figure(4); set(gcf,'color','w','position',[372 1 1297 400]);
 comps = {'grids', 'depths', 'strips'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/LINEARRERUN/' comps{c} '_trm_data.mat']);
+    load(['/data/results/' comps{c} '_trm_data.mat']);
     trm_data_all{c} = trm_data;
 end
 

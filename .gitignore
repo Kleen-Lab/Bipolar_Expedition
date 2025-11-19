@@ -4,3 +4,5 @@
 *.eps
 *.svg
 *.m~
+.DS_Store
+.vscode/

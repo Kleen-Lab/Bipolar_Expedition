@@ -14,7 +14,7 @@ library(ggsignif)
 
 base_dir = here()
 
-data <- read_excel(file.path(base_dir, "LastScripts", "band_power_output.xlsx"))
+data <- read_excel(file.path(base_dir, "results", "band_power_output.xlsx"))
 data <- data %>% mutate(patient = as.factor(patient),
                        freq = as.factor(freq),
                        bpd = as.factor(bpd),
@@ -123,9 +123,6 @@ scale_y_continuous(
      geom_text(data=data_stars,aes(x=bpd,y=offset_y,label=sig_star), inherit.aes = FALSE,color = "black", size = 10)+
     facet_wrap2(~ freq, scales = "free_y") +
     facetted_pos_scales(y = position_scales) 
-
-
-
     
     # plot
     ggplot(data_summary, aes(x=bpd, y=effect_size)) +

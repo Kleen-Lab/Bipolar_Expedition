@@ -8,7 +8,7 @@ run2x2plots = 1;
 saveSpikeStats = 0;
 savePlots = 0;
 
-folderDataBase = '/Users/davidcaldwell/Box/KLEENLAB/David/Results/2025';
+folderDataBase = '/data/results/';
 saveName = {'LL20','LL40','LL100','absDer'};
 saveName = {'absDer'};
 statsStruct = struct;

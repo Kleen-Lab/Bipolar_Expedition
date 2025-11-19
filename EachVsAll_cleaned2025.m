@@ -36,9 +36,9 @@ function [mDiff, mb_m, mARb_m, Mbp_distance] = EachVsAll_cleaned2025_fxn(pt)
     
     cm=cool(6); cm(1,:)=[0 0 0]; 
     
-    data_root = '/Volumes/SPIKE/';
-    datadir = fullfile(data_root, 'bipolar_expedition', 'baseline-high-density-data');
-    tag_spikes_path = fullfile(data_root, 'bipolar_expedition', 'taggedspikes_April2022.mat');
+    data_root = '/data/';
+    datadir = fullfile(data_root, 'baseline-high-density-data');
+    tag_spikes_path = fullfile(data_root, 'taggedspikes_April2022.mat');
     load(tag_spikes_path);
     
     sfx=512;

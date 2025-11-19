@@ -122,7 +122,7 @@ function bipolar_electrodemaps_2025_revised
                 continue;
             end
         
-            filename = ['/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/OMNIRERUN2/' ...
+            filename = ['/data' ...
             'fix_' electrode_types{e} '_dist_tent_' pts{p} '.mat'];
             
             if exist(filename, 'file')

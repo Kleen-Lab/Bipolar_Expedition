@@ -16,7 +16,7 @@ function bipolarexpedition_Linear_2025
     
     save_data = true; % save plots averaged across all patients for each component spectra
     save_data_pt = false; % save plots for example patient spectra
-    save_data_path = '/home/devon2/Desktop/KLEENLAB/bipolar_project_renamed/LINEARRERUN/'; %update to path of output
+    save_data_path = '/data/results/'; %update to path of output
     component_num = q;
     transform = 2;
     g1s2d3=component_num; 
@@ -40,11 +40,8 @@ function bipolarexpedition_Linear_2025
     caxisrange=[0 20];
     cm=cool(17); 
     cm=[0 0 0;1 1 1;1 1 1;cm]; %first entry black for referential, rest allows color-coding of physical distance
-    %data_root = getenv("KLEEN_DATA");
-    %if ~exist('data_root'); data_root='/Volumes/KLEEN_DRIVE/'; end
-    %if ~exist('data_root'); data_root='/data/'; end
-    %datadir = fullfile(data_root, 'bipolar_expedition');
-    datadir = '/data/bipolar_expedition/';
+
+    datadir = '/data/';
     tag_spikes_path = fullfile(datadir, 'taggedspikes_April2022.mat');
     disp('loading tagged');
     load(tag_spikes_path);

@@ -26,13 +26,12 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
     
     cm=cool(6); cm(1,:)=[0 0 0];
     
-    data_root = '/userdata/akalra/maxone/'; % change data root of where 
+    data_root = 'data'; % change data root of where 
     % baseline-high-density-data folder is and where to save the .mat file to
-    datadir = fullfile(data_root, 'bipolar_expedition', 'baseline-high-density-data');
+    datadir = fullfile(data_root, 'baseline-high-density-data');
     %cd([datadir])
-    tag_spikes_path = fullfile(data_root, 'bipolar_expedition', 'taggedspikes_April2022.mat');
+    tag_spikes_path = fullfile(data_root, 'taggedspikes_April2022.mat');
     load(tag_spikes_path);
-    % load('/Users/jonathankleen/Desktop/taggedspikes_April2022.mat')
     sfx=512;
     frxrange=[2 200]; %frequency range to examine
       ft=[2 5 10 20 50 100 200]; ftl=cellstr(num2str(ft')); %frequency labels for plots
@@ -72,17 +71,15 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
     
     % load electrode component infor (grid/strip/depth and how many linear contacts they have in a row
     % [bpN,bpT]=xlsread(['/Users/davidcaldwell/code/high_density_ecog/AN_ElectrodeInfoTDT.xlsx'],pts{p});
-    an_electrode_info_path = fullfile(data_root, 'bipolar_expedition', 'AN_ElectrodeInfoTDT.xlsx');
+    an_electrode_info_path = fullfile(data_root, 'AN_ElectrodeInfoTDT.xlsx');
     [bpN,bpT]=xlsread(an_electrode_info_path, pts{p});
     
     
     [em,eleclabels,anatomy]=getelecs(pts{p},2);
     
     cm=cool(6); cm(1,:)=[0 0 0];
-    % datadir='/Volumes/KLEEN_DRIVE/David/Bipolar project/baseline-high-density-data/bandpassfiltered/';
-    datadir = fullfile(datadir, 'bandpassfiltered');
-    %cd([datadir])
-    %load('/Volumes/KLEEN_DRIVE/David/Bipolar project/taggedspikes_April2022.mat')
+ 
+
     sfx=512;
     frxrange=[2 200]; %frequency range to examine
       ft=[2 5 10 20 50 100 200]; ftl=cellstr(num2str(ft')); %frequency labels for plots
@@ -215,7 +212,7 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
     
     if save_mat
     % modify path to save_path location
-    save(['/userdata/akalra/maxone/devkrish/bipolar_project_renamed/' pt '_fig3_data.mat'], 'pt', 'binz', 'toplot', 'frx', 'binsz', 'Mbp_distance', 'cm_distance');
+    save(['/data/results/', pt '_fig3_data.mat'], 'pt', 'binz', 'toplot', 'frx', 'binsz', 'Mbp_distance', 'cm_distance');
     end
     
 end

@@ -8,8 +8,6 @@ function [s,frx]=bpspectra_Linear_2025(d,sfx,frxrange,okc)
 %    ln_s is all spectra data (frx X channel X window) that was log-transformed. Can do mean to create trm.
 %    frx is index of frequencies
 
-addpath('/userdata/akalra/maxone/matlab_utilities-main/misc/');
-
 [~,nch,nwind]=size(d);
 %just getting frequency index
 [~,frx]=spectrogramjk_chronuxmtfft(squeeze(d(:,1,1)),sfx,frxrange,[.5,1],0); 
