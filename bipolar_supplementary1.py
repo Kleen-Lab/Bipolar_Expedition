@@ -9,12 +9,15 @@ import matplotlib.pyplot as plt
 import scipy.io
 import math
 import pandas as pd
+from pathlib import Path
 
 
 # In[2]:
 
 
-df = pd.read_excel('data/tableoutputfile.xlsx')
+project_dir = Path.cwd()
+data_file = project_dir / 'data' / 'tableoutputfile.xlsx'
+df = pd.read_excel(data_file)
 df
 
 
