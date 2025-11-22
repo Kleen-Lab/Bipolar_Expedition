@@ -2,7 +2,6 @@
 % Script to plot stacked histograms for number of bipolar pairs
 % stratified by electrode type
 
-function bipolar_electrodemaps_2025_revised
 
 data_root = getenv("BIPOLAR_DATA");
 %Grids/strips in blue, depths in red
@@ -88,4 +87,3 @@ end
 
 lgd = legend(h, legend_entries, 'Position', [0.78, 0.3, 0.15, 0.4]);
 
-end
