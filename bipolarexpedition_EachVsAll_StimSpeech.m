@@ -4,6 +4,8 @@ function [mDiff,mb_m,mARb_m,binz,frx]=bipolarexpedition_EachVsAll_StimSpeech(pt,
 % see loopbipolarexpedition.m to loop across patients and analyze
 % EC175 and EC183 both have intact 16x16 square grids (channel #s 1:256)
 
+savePlots = true;
+
 % run on EC175 AND EC183
 
 if ~exist('pt','var')||isempty(pt); pt='EC175'; end %pt='EC175'; % EC175 and EC183 both have intact 16x16 square grids (channel #s 1:256)
@@ -18,14 +20,13 @@ xldist=[0 70];
 doanglerange=0;
 sizeoffont=12;
 
-savePlots = true;
-folderFigures = '/results'; if ~exist(folderFigures); mkdir(folderFigures); end
 
 cm=cool(6); cm(1,:)=[0 0 0];
-% datadir=['/Volumes/KLEEN_DRIVE/bipolar_expedition/'];
-datadir=['/data/'];
-ptdatadir=[datadir 'baseline-high-density-data/'];
+datadir=getenv("BIPOLAR_DATA");
+ptdatadir=fullfile(datadir,'baseline-high-density-data/');
 u=dir(ptdatadir); uptbl={}; for i=1:length(u); uname=u(i).name; uptbl{i,1}=uname(1:end-28); end; uptbl(1:2)=[]; clear i u uname
+folderFigures = fullfile(datadir,'/results'); if ~exist(folderFigures); mkdir(folderFigures); end
+
 
 load([datadir '/taggedspikes_April2022']);
 sfx=512;
@@ -136,23 +137,23 @@ dSpeech =           dSpeech         (:,:,1:min([size(d,3) size(dSpeech,3)]));
 dNoSpeechNoStim =   dNoSpeechNoStim (:,:,1:min([size(d,3) size(dNoSpeechNoStim,3)]));
 dStim =             dStim           (:,:,1:min([size(d,3) size(dStim,3)]));
 
-disp('Speech windows'); [mSpeech        ,~,~]=bpspectra_EachVsAll(dSpeech        ,sfx,frxrange,em,nchtocheck);
-disp('NoSpeechNoStim windows'); [mNoSpeechNoStim,~,~]=bpspectra_EachVsAll(dNoSpeechNoStim,sfx,frxrange,em,nchtocheck);
-disp('Stim windows'); [mStim          ,~,~]=bpspectra_EachVsAll(dStim          ,sfx,frxrange,em,nchtocheck);
+disp('Speech windows'); [mSpeech        ,~,~]=bpspectra_EachVsAll_2025(dSpeech,sfx,frxrange,em,nchtocheck,none1sqrt2log3);
+disp('NoSpeechNoStim windows'); [mNoSpeechNoStim,~,~]=bpspectra_EachVsAll_2025(dNoSpeechNoStim,sfx,frxrange,em,nchtocheck,none1sqrt2log3);
+disp('Stim windows'); [mStim          ,~,~]=bpspectra_EachVsAll_2025(dStim,sfx,frxrange,em,nchtocheck,none1sqrt2log3);
 
 %mSpeech = M(:,:,:,(hasSpeechTotal & ~hasStimTotal));
 %mNoSpeechNoStim = M(:,:,:,(~hasSpeechTotal & ~hasStimTotal));
 %mStim = M(:,:,:,(hasStimTotal & ~hasSpeechTotal));
 
 d=d(:,:,windowstocheck); clear Straces_allch; %free up RAM by getting rid of whatever won't be used (only using first ___ number of windows)
-[M,Mbpdist,frx]=bpspectra_EachVsAll(d,sfx,frxrange,em,nchtocheck);
+[M,Mbpdist,frx]=bpspectra_EachVsAll_2025(d,sfx,frxrange,em,nchtocheck,none1sqrt2log3);
 
 %% mean across windows
 
 M=sq(mean(M,4));
 
 %can save files for plotting later in the fig5_out file
-save(['data/results/stg_Devon_' pt(3:end) .mat'], 'dSpeech', 'dNoSpeechNoStim', 'dStim','mSpeech', 'mNoSpeechNoStim', 'mStim', 'Mbpdist', 'frx', '-v7.3');
+save(fullfile(folderFigures,['/stg_Devon_' pt(3:end) .mat']), 'dSpeech', 'dNoSpeechNoStim', 'dStim','mSpeech', 'mNoSpeechNoStim', 'mStim', 'Mbpdist', 'frx', '-v7.3');
 
 
 %% now that we have bipolar pairs and spectra, we can select the channels we are interested in
