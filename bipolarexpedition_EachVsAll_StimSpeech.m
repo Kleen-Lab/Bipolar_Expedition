@@ -153,7 +153,7 @@ d=d(:,:,windowstocheck); clear Straces_allch; %free up RAM by getting rid of wha
 M=sq(mean(M,4));
 
 %can save files for plotting later in the fig5_out file
-save(fullfile(folderFigures,['/stg_Devon_' pt(3:end) .mat']), 'dSpeech', 'dNoSpeechNoStim', 'dStim','mSpeech', 'mNoSpeechNoStim', 'mStim', 'Mbpdist', 'frx', '-v7.3');
+save(fullfile(folderFigures,['/stg_Devon_' pt(3:end) '.mat']), 'dSpeech', 'dNoSpeechNoStim', 'dStim','mSpeech', 'mNoSpeechNoStim', 'mStim', 'Mbpdist', 'frx', '-v7.3');
 
 
 %% now that we have bipolar pairs and spectra, we can select the channels we are interested in
