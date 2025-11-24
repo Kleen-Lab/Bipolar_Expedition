@@ -5,6 +5,7 @@ function [mDiff,mb_m,mARb_m,binz,frx]=bipolarexpedition_EachVsAll_StimSpeech(pt,
 % EC175 and EC183 both have intact 16x16 square grids (channel #s 1:256)
 
 savePlots = true;
+pts = {'EC175','EC183'};
 
 % run on EC175 AND EC183
 
