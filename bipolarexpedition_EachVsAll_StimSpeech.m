@@ -21,7 +21,6 @@ xldist=[0 70];
 doanglerange=0;
 sizeoffont=12;
 
-
 cm=cool(6); cm(1,:)=[0 0 0];
 datadir=getenv("BIPOLAR_DATA");
 ptdatadir=fullfile(datadir,'baseline-high-density-data/');
@@ -218,7 +217,6 @@ end
 
 %%  permutation testing
 
-
 %for chan = 1:size(mSpeech,1)
 [sizeX,~,sizeY] = size(mz_zSpeech);
 [clustersSpeech, pValuesSpeech, tSumsSpeech, permutationDistributionSpeech] = permutest(permute(mz_zSpeech,[1,3,2]),permute(mz_zNoST,[1,3,2]),false,[],[],1);
@@ -376,8 +374,6 @@ save(fullfile(folderFigures,['/stg_Devon_' pt(3:end) '.mat']),'avgStimBaseSTG','
     'avgStimBaseClustSTG','mz_zStimSTG_gamma','mz_zNoSTSTG_gamma','clustersSpeechSTG_gamma','pValuesSpeechSTG_gamma', ...
     'binzplotSTG','MbpdistSTG',...
     'mStim', 'Mbpdist', 'frx', '-v7.3');
-
-
 
 %% 
 

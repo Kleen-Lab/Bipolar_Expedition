@@ -47,7 +47,10 @@ xlim(xlim_all);
 
 for i = 1:length(xpos)
     xline(xpos(i), 'Color', [0.6 0.6 0.6]);
-    yline(ypos(i), 'Color', [0.6 0.6 0.6]);
+end
+
+for i = 1:length(ypos)
+        yline(ypos(i), 'Color', [0.6 0.6 0.6]);
 end
 
 subplot3 = subplot('Position', [0.6344, 0.6676, 0.126, 0.187]);
@@ -68,9 +71,13 @@ caxis([-maxSTGAbs,maxSTGAbs])
 xticks([10 20 30 40 50 60]);
 cmocean('balance')
 xlim(xlim_all);
+
 for i = 1:length(xpos)
     xline(xpos(i), 'Color', [0.6 0.6 0.6]);
-    yline(ypos(i), 'Color', [0.6 0.6 0.6]);
+end
+
+for i = 1:length(ypos)
+        yline(ypos(i), 'Color', [0.6 0.6 0.6]);
 end
 
 subplot4 = subplot('Position', [0.8376, 0.6676, 0.126, 0.187]);
@@ -146,9 +153,11 @@ xlim(xlim_all);
 
 for i = 1:length(xpos)
     xline(xpos(i), 'Color', [0.6 0.6 0.6]);
-    yline(ypos(i), 'Color', [0.6 0.6 0.6]);
 end
 
+for i = 1:length(ypos)
+        yline(ypos(i), 'Color', [0.6 0.6 0.6]);
+end
 
 subplot8 = subplot('Position', [0.6344, 0.32, 0.126, 0.187]);
 pcolorjk_djc(binz(2:size(mz_zNoSTSTG,3)+1),frx,avgStimBaseClustSTG); shading flat;
@@ -171,7 +180,10 @@ xlim(xlim_all);
 
 for i = 1:length(xpos)
     xline(xpos(i), 'Color', [0.6 0.6 0.6]);
-    yline(ypos(i), 'Color', [0.6 0.6 0.6]);
+end
+
+for i = 1:length(ypos)
+        yline(ypos(i), 'Color', [0.6 0.6 0.6]);
 end
 
 subplot9 = subplot('Position', [0.8376, 0.32, 0.126, 0.187]);
@@ -182,7 +194,6 @@ plot(binz(2:size(mz_zNoSTSTG_gamma,1)+1),mean(mz_zNoSTSTG_gamma,2),'linewidth',2
 for signifClust = 1:length(pValuesSpeechSTG_gamma)
     if pValuesSpeechSTG_gamma(signifClust) <= 0.05
         sigstar([binzPlotSTG(clustersSpeechSTG_gamma{signifClust}(1)),binzPlotSTG(clustersSpeechSTG_gamma{signifClust}(end))])
-
     end
 end
 
@@ -197,7 +208,6 @@ grid on;
 set(gca, 'GridAlpha', 0.35)
 xticks([10 20 30 40 50 60]);
 ylim([-2.5 1]);
-
 
 binsz=3;
 subplot10 = subplot('Position', [0.8376, 0.2374, 0.126, 0.038]);
