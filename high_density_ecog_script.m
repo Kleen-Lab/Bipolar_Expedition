@@ -22,8 +22,8 @@ data_root = getenv("BIPOLAR_DATA");
 datadir = data_root;
 folderDataBase = fullfile(data_root,'results');
 
-fileSpikes = fullfile(data_root,taggedspikes_April2022.mat');
-folderBaseline = fullfile(data_root,baseline-high-density-data');
+fileSpikes = fullfile(data_root,'taggedspikes_April2022.mat');
+folderBaseline = fullfile(data_root,'baseline-high-density-data');
 filesFolderBaseline = dir(folderBaseline);
 namesFilesBaseline = {filesFolderBaseline(:).name};
 

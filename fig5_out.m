@@ -17,7 +17,7 @@ set(gcf, 'Color', 'white');
 
 % requires these files saved from
 load(fullfile(data_dir,'results/stg_Devon_183.mat'));
-
+binzsave = binz;
 
 subplot1 = subplot('Position', [0, 0.58, 0.385, 0.365]);
 pt = 'EC183';
@@ -118,8 +118,9 @@ set(gca, 'GridAlpha', 0.35)
 %subplot6 = subplot('Position', [0.01, 0.255, 0.159, 0.1739]);
 %img2 = imread('/home/devkrish/Desktop/ec175.png');
 %imshow(img2);
-clear;
+clearvars -except binzsave ft ftl;
 
+binz = binzsave;
 
 subplot6 = subplot('Position', [0.03, 0.185, 0.315, 0.395]);
 pt = 'EC175';
