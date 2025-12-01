@@ -559,6 +559,8 @@ for index = 1:length(folderFiguresCell)
                 disp(['Individual Channelwise Permutation test done for Subject ' subjName])
                 %%
                 dataIntTemp = meanSpikesReferencedGoodOnly(1:end-1,notNanIndsCombined);
+                
+                if doPlots
 
                 figure(figureTotal)
                 nexttile
@@ -567,7 +569,6 @@ for index = 1:length(folderFiguresCell)
                 figure(figureTotalSub)
                 nexttile
                 title(patientsVetted{jj})
-                if doPlots
                     if plotPermChans & ~isempty(dataIntTemp) & sum(~isnan(dataIntTemp(:)))
 
                         desiredPlotBoundsSubj = [0 max(dataIntTemp(:))];

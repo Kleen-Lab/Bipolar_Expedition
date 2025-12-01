@@ -365,6 +365,12 @@ for index = 1:length(folderFiguresCell)
             %%
             dataIntTemp = meanSpikesReferencedGoodOnly(1:end-1,notNanIndsCombined);
 
+            numPlotVec = length(notNanIndsCombined);
+
+            desiredPlotBoundsSubj = [0 max(dataIntTemp(:))];
+
+            tPlot = t(1:end-1);
+
             %% DEVON OUTPUT
 
             figout = figure;
