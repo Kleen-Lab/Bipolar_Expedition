@@ -21,7 +21,8 @@ outputTable = table;
 for jj = 1:length(saveName) 
     processedInt = saveName{jj};
     %folderFigures = folderFiguresCell{jj};
-    dataFile  = fullfile(folderDataBase,[processedInt '.mat']);
+    dataFile  = fullfile(folderDataBase,processedInt,[processedInt '.mat']);
+    folderFigures = fullfile(folderDataBase,processedInt);
     load(dataFile);
     
     
