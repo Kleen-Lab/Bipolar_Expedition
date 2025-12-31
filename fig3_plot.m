@@ -25,7 +25,7 @@ set(gcf, 'Color', 'white');
 load(fullfile(data_dir,'EC175_fig3_data.mat'));
 
 subplot1 = subplot('Position', [0.375, 0.68, 0.24, 0.24]);
-elecsbrain(pt,0,[1:256],[0 0 0],'l',0,3.3,2); alpha 1;
+%elecsbrain(pt,0,[1:256],[0 0 0],'l',0,3.3,2); alpha 1; % requires montages
 
 subplot2 = subplot('Position', [0.37, 0.25, 0.25, 0.4]);
 pcolorjk(binz(1:size(toplot,2)),frx,toplot); shading flat; set(gca,'ydir','normal'); 
@@ -50,7 +50,7 @@ clear pt binz toplot frx binsz Mbp_distance cm_distance
 load(fullfile(data_dir,'EC183_fig3_data.mat'));
 
 subplot4 = subplot('Position', [0.67, 0.68, 0.25, 0.25]);
-elecsbrain(pt,0,[1:256],[0 0 0],'l',0,3.3,2); alpha 1;
+%elecsbrain(pt,0,[1:256],[0 0 0],'l',0,3.3,2); alpha 1; % requires montages
 
 subplot5 = subplot('Position', [0.67, 0.25, 0.284, 0.4]);
 pcolorjk(binz(1:size(toplot,2)),frx,toplot); shading flat; set(gca,'ydir','normal'); 

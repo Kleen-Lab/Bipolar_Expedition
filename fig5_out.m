@@ -21,9 +21,9 @@ binzsave = binz;
 
 subplot1 = subplot('Position', [0, 0.58, 0.385, 0.365]);
 pt = 'EC183';
-%elecsbrain(pt,0,[1:256],[0 0 0],'l',0,5,2); alpha 1;
+%elecsbrain(pt,0,[1:256],[0 0 0],'l',0,5,2); alpha 1; % requires montages
 stg=getregionelecs(pt, 'stg');
-% elecsbrain(pt,0,[stg],[1 1 0], 0, 0, 5, 2);
+% elecsbrain(pt,0,[stg],[1 1 0], 0, 0, 5, 2); % requires montages
 
 xlim_all = [0 40];
 xpos = [10 20 30 40 50 60];

@@ -5,6 +5,7 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
 % for either 'EC175' or 'EC133' (both have intact 16 x 16 grids)
 % Run this script to save ECXXX_fig3_data.mat
 % Then plot the figure using fig3_plot.m with that .mat file
+
     data_root = getenv("BIPOLAR_DATA");
 
     save_mat = true; % save .mat file for later plotting with fig3_plot.m
@@ -70,12 +71,12 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
     nch=size(d,2);
     
     % load electrode component infor (grid/strip/depth and how many linear contacts they have in a row
-    % [bpN,bpT]=xlsread(['/Users/davidcaldwell/code/high_density_ecog/AN_ElectrodeInfoTDT.xlsx'],pts{p});
+
     an_electrode_info_path = fullfile(data_root, 'AN_ElectrodeInfoTDT.xlsx');
     [bpN,bpT]=xlsread(an_electrode_info_path, pts{p});
     
     
-    [em,eleclabels,anatomy]=getelecs(pts{p},2);
+    [em,~,~]=getelecs(pts{p},2); % call to elec coordinates fxn
     
     cm=cool(6); cm(1,:)=[0 0 0];
  
@@ -197,15 +198,15 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
      toplot=mean((mb__m_z),3);  % mb or mb_z
      cm_distance=flipud(cmocean('deep',1+ceil(max(max(Mbp_distance)))));
     
-    % Plot confusion matrix of bipolar distances between all pairs
+    % plot confusion matrix of bipolar distances between all pairs
      subplot(8,3,1:3:7); pcolorjk(Mbp_distance); shf; hold on; %plot([1 1; 1 256]',[1 256;256 256]','k-','linewidth',1); plot([1 1 1 128 256],[1 128 256 256 256],'k.'); %plot([1 128 256 256 256]/2,[1 1 1 128 256]/2,'k.');
         axis equal off; set(gca,'ydir','normal','xdir','reverse'); colormap(gca,cm_distance); colorbar('fontsize',12); title('Bipolar pair distance (mm)','fontsize',sizeoffont,'fontweight','normal')
         clim([0 80]);
-    % Plot confusion matrix of bipolar distances between all pairs
+    % plot confusion matrix of bipolar distances between all pairs
      subplot(8,3,2:3:8); pcolorjk(rad2deg(Mbp_angle)); shf; hold on; %plot([1 1; 1 256]',[1 256;256 256]','k-','linewidth',1); plot([1 1 1 128 256],[1 128 256 256 256],'k.'); %plot([1 128 256 256 256]/2,[1 1 1 128 256]/2,'k.');
         axis equal off; set(gca,'ydir','normal','xdir','reverse'); colormap(gca,hsv(360)); clim([-180 180]); colorbar('fontsize',12); title('Bipolar pair angle (deg)','fontsize',sizeoffont,'fontweight','normal')
     
-    % Histogram of number of pairs per bin
+    % histogram of number of pairs per bin
      subplot(8,2,7); histogram(make1d(Mbp_distance),0:binsz:85,'facecolor',.5*[1 1 1]); set(gca,'fontsize',12); xlabel('Binned bipolar distance (mm)','fontsize',sizeoffont);
      ylabel('Counts/bin','fontweight','normal'); axis tight; grid on; cb=colorbar; set(cb,'visible','off'); xlim(xldist)
     
