@@ -36,7 +36,7 @@ Place the ```imaging``` data in a subfolder under the data directory.
 
 Run the ```master_bipolar_2025.m``` file to generate all analyses and figures. Information to run all analysis and plots is included in the master_script and the functions it calls.
 
-The supplementary figure 1 requires python and R to recreate . Refer to ```supp_figure_1_stats.R``` and ```bipolar_supplementary1.py```. 
+The supplementary figure 1 requires python and R to recreate. After running the linear analysis, save data into the tableoutput.xlsx file for plotting via ```supp_figure_1_stats.R``` and ```bipolar_supplementary1.py```. 
 
 The ```helpers``` folder has the associated helper functions that the scripts call to generate the analyses and figures. 
 
