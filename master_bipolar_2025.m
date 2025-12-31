@@ -21,6 +21,7 @@ bipolar_electrodemaps_2025_revised;
 %% Figure 2: Linear bipolar re-referencing according to distance and linear BPRR analysis
 
 bipolarexpedition_Linear_2025;
+generate_lin_freq_table; % for later supp fig 1 plotting
 
 %% Figure 3: Omnidirectional BPRR (intact grids)
 
