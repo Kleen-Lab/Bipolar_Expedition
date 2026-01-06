@@ -70,11 +70,17 @@ postHocStats;
 % absolute derivative data 
 
 high_density_ecog_script_ec133_abs_der_only;
+% high_density_ecog_script; % run on all patients
 
 %% Supplementary Linear figure (all patients individually)
 
 linearSupp;
 
+%% Supplementary figure 2 (differences in IED detection HD vs. subsampled)
+
+% requires high_density_ecog_script to run and save
+% LL20.mat, LL40.mat, LL100.mat, absDer.mat
+bipolar_supplementary2;
 
 
 
