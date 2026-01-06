@@ -16,7 +16,7 @@ from pathlib import Path
 
 
 project_dir = Path.cwd()
-data_file = project_dir / 'data' / 'tableoutputfile.xlsx'
+data_file = project_dir / 'results' / 'tableoutput.xlsx'
 df = pd.read_excel(data_file)
 df
 

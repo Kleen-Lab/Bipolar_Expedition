@@ -14,7 +14,7 @@ library(ggsignif)
 
 base_dir = here()
 
-data <- read_excel(file.path(base_dir, "results", "band_power_output.xlsx"))
+data <- read_excel(file.path(base_dir, "results", "tableoutput.xlsx"))
 data <- data %>% mutate(patient = as.factor(patient),
                        freq = as.factor(freq),
                        bpd = as.factor(bpd),
@@ -39,7 +39,7 @@ data_no_baseline <- data_no_baseline %>%
                       labels = new_x_labs))
 
 data_no_baseline <- data_no_baseline %>%
-mutate(freq = factor(freq, levels=c('delta', 'theta', 'alpha', 'beta', 'gamma', 'high_gamma'),
+mutate(freq = factor(freq, levels=c('delta', 'theta', 'alpha', 'beta', 'gamma', 'high-gamma'),
                      labels = freq_bands))
 
 
@@ -135,4 +135,4 @@ scale_y_continuous(
     theme(legend.position="top") +
     facet_wrap(~ freq) 
     
-readr::write_csv(data_summary, "output_table.csv")
+readr::write_csv(data_summary, file.path(base_dir, "results", "output_table_R.csv"))

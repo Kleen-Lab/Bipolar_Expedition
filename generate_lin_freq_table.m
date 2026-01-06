@@ -81,8 +81,8 @@ output_table = cell2table(all_data, ...
 
 % Save to excel
 if save_data
-    writetable(output_table, [save_data_path 'tableoutput.xlsx']);
-    disp(['Table saved to ' save_data_path 'tableoutput.xlsx']);
+    writetable(output_table, fullfile(save_data_path,'tableoutput.xlsx'));
+    disp(['Table saved to ' fullfile(save_data_path,'tableoutput.xlsx')]);
 end
 
 fprintf('\nUnique patients: %d\n', length(unique(output_table.patient)));
