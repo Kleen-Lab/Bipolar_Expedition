@@ -3,5 +3,5 @@
 currentPath = pwd;
 parentPath = fileparts(currentPath);
 %setenv('BIPOLAR_DATA', fullfile(currentPath, 'data'));
-setenv('BIPOLAR_DATA', '/Users/davidcaldwell/Box/KLEENLAB/David/Data');
+setenv('BIPOLAR_DATA', '/scratch/bipolar_expedition');
 addpath(genpath(fullfile(currentPath)))
