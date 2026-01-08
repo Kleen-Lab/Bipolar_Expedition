@@ -15,7 +15,7 @@ for q = 1:3 %run 1:3 for all components
     datadir = getenv("BIPOLAR_DATA");
     
     save_data = true; % save plots averaged across all patients for each component spectra
-    save_data_pt = false; % save plots for example patient spectra
+    save_data_pt = true; % save plots for example patient spectra
     save_data_path = fullfile(datadir,'results'); %update to path of output
     component_num = q;
     transform = 2;
