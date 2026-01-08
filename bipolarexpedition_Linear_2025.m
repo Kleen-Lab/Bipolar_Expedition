@@ -10,8 +10,6 @@
 %component_num --> grids(1), strips(2), depths(3)
 %transform --> use 2 for sqrt
 
-c = parcluster('Processes'); % Use 'local' for older MATLAB releases
-num_cores = c.NumWorkers;
 
 for q = 1:3 %run 1:3 for all components
     datadir = getenv("BIPOLAR_DATA");
@@ -329,13 +327,7 @@ for q = 1:3 %run 1:3 for all components
         end % patient loop
         clear d isbl ptbl pblocks s trm badchI okc nch nwind
 
-        % Restart parallel pool after each patient to prevent hangs
-        disp(['Restarting parallel pool after patient ' num2str(p)]);
-        delete(gcp('nocreate'));
-        % NEW: Give the OS time to reclaim RAM
-        fprintf('Waiting for memory cleanup...\n');
-        pause(30); % Wait 30 seconds
-        parpool(num_cores);
+   
 
     end % bipolar spacing loop
 
