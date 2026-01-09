@@ -10,9 +10,7 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
 
     save_mat = true; % save .mat file for later plotting with fig3_plot.m
     
-    if ~exist('pt','var')||isempty(pt); pt='EC175'; end % EC175 and EC183 both have intact 16x16 square grids (channel #s 1:256)
-    
-    pt = 'EC175';
+    if ~exist('pt','var')||isempty(pt); pt='EC175'; end % EC175 and EC183 both have intact 16x16 square grids (channel #s 1:256)    
     if ~exist('nchtocheck','var')||isempty(nchtocheck); nchtocheck=128*2; end
     if ~exist('windowstocheck','var')||isempty(windowstocheck); windowstocheck=250; end %each window is 1 second of data (non-overlapping)
     
