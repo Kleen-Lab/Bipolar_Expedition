@@ -213,7 +213,7 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
     
     if save_mat
     % modify path to save_path location
-    save(['/data/results/', pt '_fig3_data.mat'], 'pt', 'binz', 'toplot', 'frx', 'binsz', 'Mbp_distance', 'cm_distance');
+    save([data_root, pt '_fig3_data.mat'], 'pt', 'binz', 'toplot', 'frx', 'binsz', 'Mbp_distance', 'cm_distance');
     end
     
 end
