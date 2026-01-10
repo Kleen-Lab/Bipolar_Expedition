@@ -97,11 +97,11 @@ if g1s2d3 == 1
     xldist = [0 60];
 elseif g1s2d3 == 2
     use_ch = find(strcmpi('strip', anatomy(:,3)));
-    binsz = 4;
+    binsz = 2;
     xldist = [0 60];
 else
     use_ch = find(strcmpi('depth', anatomy(:,3)));
-    binsz = 4; %binsz=2;
+    binsz = 2; 
     xldist = [0 60];
 end
 
@@ -253,29 +253,7 @@ end
 
 disp('Finished all windows');
 
-%{
-    parfor w=windowstocheck; disp(num2str(w)); % parfor here to run the windows
-        Mflat=[];
-          Mflatbp_distance=[];
-          %Mflatbp_angle=[];
-        Mrefaveflat=[];
-        for c2=1:nchtocheck; 
-            Mflat=[Mflat; squeeze(M(:,c2,:,w))];               
-            Mflatbp_distance=[Mflatbp_distance; Mbp_distance(:,c2)]; % corresponding distance index
-            %Mflatbp_angle   =[Mflatbp_angle;    Mbp_angle(:,c2)]; % corresponding angle index
-            Mrefaveflat=[Mrefaveflat; squeeze(Mrefave(:,c2,:,w))];              
-        end
-        
-        %bin by distance and take the mean, creating: frequency X binned distance
-           % first for referential (distance = 0)
-        for i=1:nbinz % binz will be including >lower bound and up to and including (<=) upper bound
-            mb  (:,i,w)=nanmean(Mflat      (Mflatbp_distance>binz(i) & Mflatbp_distance<=binz(i+1),:),1); 
-            mARb(:,i,w)=nanmean(Mrefaveflat(Mflatbp_distance>binz(i) & Mflatbp_distance<=binz(i+1),:),1);
-        end
-        
-        disp([num2str(round(windowstocheck(w)/windowstocheck(end)*100,1)) '% of windows'])
-    end; disp('Done')
-%}
+
 
 binz(1)=[];
 

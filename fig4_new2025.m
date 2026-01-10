@@ -216,7 +216,7 @@ pts_grids = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_grids = nan(100, 43, length(pts_grids));
 
 for i = 1:length(pts_grids)
-    load(['/data/results/fix_grids_tent_' pts_grids{i} '.mat']);
+    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/omnidirectional_data/fix_grids_tent_' pts_grids{i} '.mat']); %/data/results/
     all_mDiff_grids(:,:,i) = mDiff;
 end
 
@@ -229,7 +229,7 @@ pts_strips = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_strips = nan(100, 43, length(pts_strips));
 
 for i = 1:length(pts_strips)
-    load(['/data/results/fix_strips_tent_' pts_strips{i} '.mat']);
+    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/omnidirectional_data/fix_strips_tent_' pts_strips{i} '.mat']); %/data/results/
     all_mDiff_strips(:,:,i) = mDiff;
 end
 
@@ -242,7 +242,7 @@ pts_depths = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_depths = nan(100, 43, length(pts_depths));
 
 for i = 1:length(pts_depths)
-    load(['/data/results/fix_depths_tent_' pts_depths{i} '.mat']);
+    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/omnidirectional_data/fix_depths_tent_' pts_depths{i} '.mat']); %/data/results/
     all_mDiff_depths(:,:,i) = mDiff;
 end
 
