@@ -13,7 +13,9 @@
 c = parcluster('Processes'); % Use 'local' for older MATLAB releases
 num_cores = c.NumWorkers;
 
+
 for q = 1:3 %run 1:3 for all components
+
     datadir = getenv("BIPOLAR_DATA");
     
     save_data = true; % save plots averaged across all patients for each component spectra
@@ -375,30 +377,23 @@ for q = 1:3 %run 1:3 for all components
         end
     end
 
-    % Saving power spectra averaged across all patients
-
-    %{
-    dk_lin = cell(maxbpd+1, 1);
-    
-    for i = 1:maxbpd+1
-        valid_patients = hasmat(i,:);
-        if any(valid_patients)
-            dk_lin{i} = squeeze(nanmean(ps(i,valid_patients,:), 2)); %100 F x 1`
-        else
-            dk_lin{i} = nan(size(frx)); % fill with NaNs if no data
-        end
-    
-    end
-    %}
-
     dk_lin = cell(1, maxbpd + 1);
 
     for i = 1:maxbpd + 1
         dk_lin{i} = squeeze(ps(i, :, :));  % 11 patients × 100 frequency bins
     end
 
-    % ----
+    if g1s2d3 == 1
+        save([save_data_path 'grid_lin.mat'], 'dk_lin', 'frx')
+    elseif g1s2d3 == 2
+        save([save_data_path 'strip_lin.mat'], 'dk_lin', 'frx')
+    else
+        save([save_data_path 'depth_lin.mat'], 'dk_lin', 'frx')
+    end
 
+    % ----
+    
+    % not necessary to save, but useful for intermediate plotting
     if save_data
 
         if g1s2d3 == 1
@@ -417,25 +412,148 @@ for q = 1:3 %run 1:3 for all components
 end
 
 
-for bpd=[0 1:maxbpd]
-    if any(hasmat(bpd+1,:))
-        %ribbons(frx,sq(ps(bpd+1,find(hasmat(bpd+1,:)),:)),cm(max([1 bpd_mm(bpd+1)]),:),.5,'sem',0,0);
-        %plot(frx,sq(nanmean(ps(bpd+1,hasmat(bpd+1,:),:),2)), 'color',cm(max([1 bpd_mm(bpd+1)]),:),'linewidth',4);
-        plot(frx,squeeze((ps(bpd+1,hasmat(bpd+1,:),:))), 'color',cm(max([1 bpd_mm(bpd+1)]),:),'linewidth',1);
-        hold on
-        if bpd>0
-            [clusters, p_values, ~, ~ ] = permutest(squeeze(ps(bpd+1,hasmat(bpd+1,:),:))',squeeze(ps(1,hasmat(bpd+1,:),:))',0); clusters(p_values>=0.05)=[]; p_values(p_values>=0.05)=[];
-            for i=1:length(clusters); Cp(bpd,clusters{i})=p_values(i); C(bpd,clusters{i})=1; end;
+%% Plotting 2c, d, e (means across patients for linear analysis)
+% NOW MEANS USING MEANS AS LINES NOT RIBBONS
+
+pts = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
+       'EC219', 'EC220', 'EC221', 'EC222', 'EC131', 'EC143', 'EC157', 'EC162', 'EC168'};
+
+depthsdist = [0, 5, 10, 15, 20];
+gridsdist = [0, 4, 8, 12, 16, 20];
+stripsdist = [0, 10, 20];
+frxrange = [2 200];
+cm=cool(17);
+cm=[0 0 0;1 1 1;1 1 1;cm];
+frx = 2:2:200;
+ft=[2 5 10 20 50 100 200]; ftl=cellstr(num2str(ft'));
+
+figure(4); set(gcf,'color','w','position',[372 1 1297 400]);
+
+comps = {'grid', 'depth', 'strips'};
+trm_data_all = cell(1,3);
+for c = 1:3
+    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/newtest/' comps{c} '_trm_data.mat']); % change to /data/results/
+    trm_data_all{c} = trm_data;
+end
+
+valid_pts = {};
+for p = 1:length(pts)
+    has_data = false;
+    for c = 1:3
+        pts_in_data = trm_data_all{c}.patients;
+        pt_idx = find(strcmp(pts_in_data, pts{p}));
+        if c == 1
+            data = trm_data_all{1}.grids;
+        elseif c == 2
+            data = trm_data_all{2}.depths;
+        else
+            data = trm_data_all{3}.strips;
+        end
+        if ~isempty(pt_idx) && ~isempty(data{1,pt_idx})
+            has_data = true;
+            break;
         end
     end
+    if has_data
+        valid_pts{end+1} = pts{p};
+    end
 end
-grid on; ylabel([txtyp '(power)']); xlabel('Frequency (Hz)'); ttl=['Mean across patients (n=' num2str(length(find(sum(hasmat,1)))) ')']; title({ttl,''});
-if rebase; title({ttl,['Rebased to ' num2str(rebase_fl(1)) '-' num2str(rebase_fl(2)) ' Hz referential signal'],''}); end
-set(gca,'xscale','log','xlim',frxrange,'xtick',ft,'XTickLabel',ftl,'ylim',[min(ylim)-.5 max(ylim)])
-for bpd=1:maxbpd; plot(frx,C(bpd,:)*.05*bpd+min(ylim)+.01,'-', 'color',cm(max([1 bpd_mm(bpd+1)]),:),'linewidth',2); end
-colormap(gca,cm);
-caxis(caxisrange);
-cb=colorbar;
-cb.Ticks=[0.5 bpd_mm(2:end)-.5];
-cb.TickLabels=[{'Referential'} ; cellstr(num2str(bpd_mm(2:end)'))];
+
+for c = 1:3
+    ax = subplot(1, 3, c);
+    pos = get(ax, 'Position');
+    
+    if c == 1 % grids
+        data = trm_data_all{1}.grids;
+        dists = gridsdist;
+        comp_name = 'Grid Electrodes';
+        pts_in_data = trm_data_all{1}.patients;
+    elseif c == 2 % depths
+        data = trm_data_all{2}.depths;
+        dists = depthsdist;
+        comp_name = 'Depth Electrodes';
+        pts_in_data = trm_data_all{2}.patients;
+    else % strips
+        data = trm_data_all{3}.strips;
+        dists = stripsdist;
+        comp_name = 'Strip Electrodes';
+        pts_in_data = trm_data_all{3}.patients;
+    end
+    
+    all_patient_means = cell(length(dists), 1);
+    
+    % For each distance, collect mean across channels for each patient
+    for j = 1:length(dists)
+        patient_means = [];
+
+        for p = 1:length(valid_pts)
+            pt_idx = find(strcmp(pts_in_data, valid_pts{p}));
+            if ~isempty(pt_idx) && j <= size(data,1) && ~isempty(data{j,pt_idx}) && ...
+                    size(data{j,pt_idx}, 1) > 0 && size(data{j,pt_idx}, 2) > 0
+
+                patient_mean = nanmean(data{j,pt_idx}, 1); 
+                patient_means = [patient_means; patient_mean];
+            end
+        end
+
+        all_patient_means{j} = patient_means;
+        
+        if ~isempty(patient_means)
+            grand_mean = mean(patient_means, 1); 
+            
+
+            plot(frx, grand_mean, '-', 'LineWidth', 3.4, 'Color', cm(max([1 dists(j)]),:));
+            hold on;
+        end
+    end
+    
+
+    if c == 1 % grids
+        legend({'referential', [num2str(gridsdist(2)) ' mm'], [num2str(gridsdist(3)) ' mm'], [num2str(gridsdist(4)) ' mm'], [num2str(gridsdist(5)) ' mm'], [num2str(gridsdist(6)) ' mm']}, 'location','sw');
+    elseif c == 2 % depths
+        legend({'referential', [num2str(depthsdist(2)) ' mm'], [num2str(depthsdist(3)) ' mm'], [num2str(depthsdist(4)) ' mm'], [num2str(depthsdist(5)) ' mm']}, 'location','sw');
+    else % strips
+        legend({'referential', [num2str(stripsdist(2)) ' mm'], [num2str(stripsdist(3)) ' mm']}, 'location','sw');
+    end
+    
+    title(comp_name, 'FontWeight', 'bold', 'FontSize', 12);
+    xlabel('Frequency (Hz)');
+    ylabel('sqrt(power), rebased');
+    set(gca,'xlim',frxrange,'xscale','log','xtick',ft,'XTickLabel',ftl);
+    grid on;
+    set(gca, 'GridAlpha', 0.7, 'MinorGridAlpha', 0.7);
+    
+
+    x_50_norm = (log10(50) - log10(2)) / (log10(200) - log10(2));
+    x_200_norm = (log10(200) - log10(2)) / (log10(200) - log10(2));
+    
+
+    inset_left = pos(1) + pos(3) * x_50_norm;
+    inset_width = pos(3) * (x_200_norm - x_50_norm);
+    inset_height = pos(4) * 0.70; 
+    inset_bottom = pos(2) + pos(4) * 0.25;  
+    
+    ax_inset = axes('Position', [inset_left, inset_bottom, inset_width, inset_height]);
+    
+
+    for j = 1:length(dists)
+        patient_means = all_patient_means{j};
+        if ~isempty(patient_means)
+            grand_mean = mean(patient_means, 1); 
+            
+            plot(frx, grand_mean, '-', 'LineWidth', 2, 'Color', cm(max([1 dists(j)]),:));
+            hold on;
+        end
+    end
+    
+    set(gca,'xlim',[50 200],'xscale','log','xtick',[50 100 200],'FontSize',7);
+    grid on;
+    box on;
+end
+
+sgtitle('Aggregated: Mean Across All Patients', 'FontWeight', 'bold', 'FontSize', 14);
+
+
+
+
 
