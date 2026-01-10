@@ -9,11 +9,6 @@
 pts = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
     'EC219', 'EC220', 'EC221', 'EC222', 'EC131', 'EC143', 'EC157', 'EC162', 'EC168'};
 
-pts = {'EC183', 'EC186', 'EC187', 'EC196', ...
-    'EC219', 'EC220', 'EC221', 'EC222', 'EC131', 'EC143', 'EC157', 'EC162', 'EC168'};
-
-%pts = {'EC181'};
-
 for p = 1:length(pts)
     for type = 1:3
         EachVsAll_cleaned2025_fxn(pts{p},type);

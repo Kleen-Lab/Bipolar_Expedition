@@ -10,8 +10,6 @@
 %component_num --> grids(1), strips(2), depths(3)
 %transform --> use 2 for sqrt
 
-c = parcluster('Processes'); % Use 'local' for older MATLAB releases
-num_cores = c.NumWorkers;
 
 
 for q = 1:3 %run 1:3 for all components
@@ -19,7 +17,7 @@ for q = 1:3 %run 1:3 for all components
     datadir = getenv("BIPOLAR_DATA");
     
     save_data = true; % save plots averaged across all patients for each component spectra
-    save_data_pt = false; % save plots for example patient spectra
+    save_data_pt = true; % save plots for example patient spectra
     save_data_path = fullfile(datadir,'results'); %update to path of output
     component_num = q;
     transform = 2;
@@ -331,12 +329,7 @@ for q = 1:3 %run 1:3 for all components
         end % patient loop
         clear d isbl ptbl pblocks s trm badchI okc nch nwind
 
-        % Restart parallel pool every 5 patients to prevent hangs
-        if mod(p, 2) == 0
-            disp(['Restarting parallel pool after patient ' num2str(p)]);
-            delete(gcp('nocreate'));
-            parpool(num_cores);
-        end
+   
 
     end % bipolar spacing loop
 
