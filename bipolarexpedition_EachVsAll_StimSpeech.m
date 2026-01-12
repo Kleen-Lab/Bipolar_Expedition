@@ -23,9 +23,10 @@ sizeoffont=12;
 
 cm=cool(6); cm(1,:)=[0 0 0];
 datadir=getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
 ptdatadir=fullfile(datadir,'baseline-high-density-data/');
 u=dir(ptdatadir); uptbl={}; for i=1:length(u); uname=u(i).name; uptbl{i,1}=uname(1:end-28); end; uptbl(1:2)=[]; clear i u uname
-folderFigures = fullfile(datadir,'/results'); if ~exist(folderFigures); mkdir(folderFigures); end
+folderFigures = data_results;
 
 
 load([datadir '/taggedspikes_April2022']);

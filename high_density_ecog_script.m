@@ -24,8 +24,9 @@ twoSidedPerm = true; % FOR LL AND ABSDER BECOMES ONE-SIDED
 fs = 512; % sampling rate Hz
 
 data_root = getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
 datadir = data_root;
-folderDataBase = fullfile(data_root,'results');
+folderDataBase = data_results;
 
 fileSpikes = fullfile(data_root,'taggedspikes_April2022.mat');
 folderBaseline = fullfile(data_root,'baseline-high-density-data');
@@ -56,6 +57,10 @@ cellLLnum = {0.02,0.04,0.1,0};
 saveName = {'LL20','LL40','LL100','absDer'};
 
 for index = 1:length(folderFiguresCell)
+
+    if ~exist(folderPathCell{index}, 'dir')
+        mkdir(folderPath);
+    end
 
     if doPlots
         % visualize spikes to start

@@ -4,6 +4,7 @@
 
 
 data_root = getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
 %Grids/strips in blue, depths in red
 
 
@@ -55,7 +56,7 @@ for e = 1:3
             continue;
         end
 
-        filename = [fullfile(data_root,['fix_' electrode_types{e} '_dist_tent_' pts{p} '.mat'])];
+        filename = [fullfile(data_results,['fix_' electrode_types{e} '_dist_tent_' pts{p} '.mat'])];
 
         if exist(filename, 'file')
             load(filename, 'distance');

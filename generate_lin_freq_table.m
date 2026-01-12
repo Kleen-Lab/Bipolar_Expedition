@@ -10,11 +10,12 @@
 % each patient.
 
 datadir = getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
     
 save_data = true;
-save_data_path = fullfile(datadir,'results'); 
+save_data_path = data_results; 
 
-load([save_data_path 'grid_trm_data.mat']);
+load(fullfile(save_data_path,'grid_trm_data.mat'));
 
 
 grids = trm_data.grids;

@@ -2,7 +2,7 @@
 % Plot supplementary linear supplementary analysis for patients
 
 data_dir = getenv("BIPOLAR_DATA");
-result_dir = fullfile(data_dir,'results');
+result_dir = getenv("RESULTS");
 
 % order of patients
 pts = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...

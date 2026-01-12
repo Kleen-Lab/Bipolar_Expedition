@@ -15,10 +15,11 @@
 for q = 1:3 %run 1:3 for all components
 
     datadir = getenv("BIPOLAR_DATA");
+    data_results = getenv("RESULTS");
     
     save_data = true; % save plots averaged across all patients for each component spectra
     save_data_pt = true; % save plots for example patient spectra
-    save_data_path = fullfile(datadir,'results'); %update to path of output
+    save_data_path = data_results; %update to path of output
     component_num = q;
     transform = 2;
     g1s2d3=component_num;
@@ -320,7 +321,7 @@ for q = 1:3 %run 1:3 for all components
                 axis off
 
                 if save_data_pt
-                    save('spec_sqrt.mat', 'dk_spec', 'frx', 'ft', 'ftl', 'frxrange', 'txtyp');
+                    save(fullfile(data_results,'spec_sqrt.mat'), 'dk_spec', 'frx', 'ft', 'ftl', 'frxrange', 'txtyp');
                 end
 
             end %set(gcf,'position',[1198 785 498 481]) %to resize spectra for figure
@@ -390,11 +391,11 @@ for q = 1:3 %run 1:3 for all components
     if save_data
 
         if g1s2d3 == 1
-            save([save_data_path 'grid_trm_data.mat'], 'trm_data')
+            save(fullfile(save_data_path,'grid_trm_data.mat'), 'trm_data')
         elseif g1s2d3 == 2
-            save([save_data_path 'strip_trm_data.mat'], 'trm_data')
+            save(fullfile(save_data_path, 'strip_trm_data.mat'), 'trm_data')
         else
-            save([save_data_path 'depth_trm_data.mat'], 'trm_data')
+            save(fullfile(save_data_path,'depth_trm_data.mat'), 'trm_data')
         end
 
         disp(['Saved trm_data to: ' save_data_path]);

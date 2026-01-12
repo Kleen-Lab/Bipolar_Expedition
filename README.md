@@ -26,7 +26,9 @@ Note that you will have to configure paths in the code to wherever your data is 
 
 Download data from : [10.17605/OSF.IO/CN8W4](https://osf.io/cn8w4/)
 
-and place in ```data/``` subfolder in the main working directory. 
+point your ```setup_bipolar.m``` to a ```data/``` folder. 
+
+point your ```setup_bipolar.m``` to a ```results/``` folder.
 
 Place the ```baseline-high-density-data``` data in a subfolder under the data directory. 
 

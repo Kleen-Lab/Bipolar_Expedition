@@ -9,7 +9,8 @@ saveSpikeStats = 0;
 savePlots = 0;
 
 data_root = getenv("BIPOLAR_DATA");
-folderDataBase = fullfile(data_root,'/results/');
+data_results = getenv("RESULTS");
+folderDataBase = data_results;
 saveName = {'LL20','LL40','LL100','absDer'};
 statsStruct = struct;
 

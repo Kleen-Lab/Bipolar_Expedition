@@ -17,12 +17,16 @@ figure;
 
 all_mDiff = nan(100, 43, length(pts_grids));
 
+data_root = getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
+
+
 % Load all mDiff matrices
 for i = 1:length(pts_grids)
 
     subplot(4,4,subplot_pos(i))
 
-    load(['/data/results/fix_grids_tent_' pts_grids{i} '.mat']);
+    load(fullfile(data_results,['fix_grids_tent_' pts_grids{i} '.mat']));
     
     % Store this patient's mDiff in the 3D array
     all_mDiff(:,:,i) = mDiff;
@@ -40,7 +44,7 @@ end
 % Compute the nanmean across the 3rd dimension (across patients)
 mDiff_mean = nanmean(all_mDiff, 3);
 
-save('/data/results/m_eva_grids.mat', 'mDiff_mean');
+save(fullfile(data_results,'m_eva_grids.mat'), 'mDiff_mean');
 
 
 figure;
@@ -76,7 +80,7 @@ pts_names = {'Pt. 1', 'Pt. 2', 'Pt. 3', 'Pt. 4', 'Pt. 5', 'Pt. 6', ...
 'Pt. 7', 'Pt. 8', 'Pt. 9', 'Pt. 10', 'Pt. 11', 'Pt. 12', 'Pt. 13', ...
 'Pt. 14', 'Pt. 15', 'Pt. 16'};
 
-all_mDiff_strips = nan(100, 43, length(pts_strips));
+all_mDiff_strips = nan(100, 22, length(pts_strips));
 
 figure;
 % Load all mDiff matrices from strips
@@ -86,7 +90,7 @@ for i = 1:length(pts_strips)
     title(pts_names{i});
 
     if ~(strcmp(pts_strips{i}, 'EC181') || strcmp(pts_strips{i}, 'EC220') || strcmp(pts_strips{i}, 'EC162')) 
-        load(['/data/results/fix_strips_tent_' pts_strips{i} '.mat']);
+        load(fullfile(data_results,['fix_strips_tent_' pts_strips{i} '.mat']));
         
         % Store this patient's mDiff in the 3D array
         all_mDiff_strips(:,:,i) = mDiff;
@@ -141,7 +145,7 @@ figure;
 % Load all mDiff matrices from depths
 for i = 1:length(pts_depths)
     subplot(4,4,i)
-    load(['/data/results/fix_depths_tent_' pts_depths{i} '.mat']);
+    load(fullfile(data_results,['fix_depths_tent_' pts_depths{i} '.mat']));
     
     % Store this patient's mDiff in the 3D array
     all_mDiff_depths(:,:,i) = mDiff;
@@ -216,7 +220,7 @@ pts_grids = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_grids = nan(100, 43, length(pts_grids));
 
 for i = 1:length(pts_grids)
-    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/omnidirectional_data/fix_grids_tent_' pts_grids{i} '.mat']); %/data/results/
+    load(fullfile(data_results,['fix_grids_tent_' pts_grids{i} '.mat']));
     all_mDiff_grids(:,:,i) = mDiff;
 end
 
@@ -229,7 +233,7 @@ pts_strips = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_strips = nan(100, 43, length(pts_strips));
 
 for i = 1:length(pts_strips)
-    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/omnidirectional_data/fix_strips_tent_' pts_strips{i} '.mat']); %/data/results/
+    load(fullfile(data_results,['fix_depths_tent_' pts_strips{i} '.mat']));
     all_mDiff_strips(:,:,i) = mDiff;
 end
 
@@ -242,7 +246,7 @@ pts_depths = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_depths = nan(100, 43, length(pts_depths));
 
 for i = 1:length(pts_depths)
-    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/omnidirectional_data/fix_depths_tent_' pts_depths{i} '.mat']); %/data/results/
+    load(fullfile(data_results,['fix_depths_tent_' pts_depths{i} '.mat']));
     all_mDiff_depths(:,:,i) = mDiff;
 end
 

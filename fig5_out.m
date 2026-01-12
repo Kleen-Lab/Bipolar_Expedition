@@ -10,13 +10,15 @@ function fig5_out
 % bipolarexpedition_EachVsAll_StimSpeech.m
 
 data_dir = getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
+
 
 fig = figure(5);
 set(fig, 'Position', [100, 100, 1400, 900]);
 set(gcf, 'Color', 'white');
 
 % requires these files saved from
-load(fullfile(data_dir,'results/stg_Devon_183.mat'));
+load(fullfile(data_results,'stg_Devon_183.mat'));
 binzsave = binz;
 
 subplot1 = subplot('Position', [0, 0.58, 0.385, 0.365]);
@@ -133,7 +135,7 @@ data_dir = getenv("BIPOLAR_DATA");
 xlim_all = [0 40];
 xpos = [10 20 30 40 50 60];
 ypos = [5 10 20 40 80];
-load(fullfile(data_dir,'results/stg_Devon_175.mat'));
+load(fullfile(data_results,'stg_Devon_175.mat'));
 
 
 subplot7 = subplot('Position', [0.409, 0.32, 0.17, 0.187]);

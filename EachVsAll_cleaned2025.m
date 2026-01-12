@@ -23,6 +23,8 @@ function [mDiff, mb_m, mARb_m, Mbp_distance] = EachVsAll_cleaned2025_fxn(pt,pick
 
 
 data_root = getenv("BIPOLAR_DATA");
+data_results = getenv("RESULTS");
+
 datadir = fullfile(data_root, 'baseline-high-density-data');
 tag_spikes_path = fullfile(data_root, 'taggedspikes_April2022.mat');
 load(tag_spikes_path);
@@ -314,8 +316,8 @@ mARb_m=squeeze(mean(mARb_,3));
 mDiff=((mb_m-mARb_m)./mARb_m)*100;
 distance = Mbp_distance;
 
-save(fullfile(data_root,['/fix_',component,'_tent_',pt,'.mat']), 'mDiff', 'mb_m', 'mARb_m');
-save(fullfile(data_root,['fix_',component,'_dist_tent_',pt,'.mat']), 'distance');
+save(fullfile(data_results,['/fix_',component,'_tent_',pt,'.mat']), 'mDiff', 'mb_m', 'mARb_m');
+save(fullfile(data_results,['fix_',component,'_dist_tent_',pt,'.mat']), 'distance');
 end
 
 

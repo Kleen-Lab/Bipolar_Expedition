@@ -8,6 +8,8 @@
 output_chs = [];
 output_widths = [];
 
+data_results= getenv("RESULTS");
+
 conds = {'LL20', 'LL40', 'LL100', 'absDer'};
 
 for c = 1:size(conds,2)
@@ -16,7 +18,7 @@ for c = 1:size(conds,2)
     % NOTE: these files are created when running
     % high_density_ecog_script.m
 
-    load(['/data/results/' conds{c} '.mat']);
+    load(fullfile(data_results,[conds{c} '.mat']));
 
     strx = permResultsCell;
     num_chs = zeros(1,size(strx,2));

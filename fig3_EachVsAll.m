@@ -7,6 +7,7 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
 % Then plot the figure using fig3_plot.m with that .mat file
 
     data_root = getenv("BIPOLAR_DATA");
+    data_results = getenv("RESULTS");
 
     save_mat = true; % save .mat file for later plotting with fig3_plot.m
     
@@ -211,7 +212,7 @@ function [pt, binz, toplot, frx, binsz, Mbp_distance, cm_distance]=fig3_EachVsAl
     
     if save_mat
     % modify path to save_path location
-    save(fullfile(data_root, [pt '_fig3_data.mat']), 'pt', 'binz', 'toplot', 'frx', 'binsz', 'Mbp_distance', 'cm_distance');
+    save(fullfile(data_results, [pt '_fig3_data.mat']), 'pt', 'binz', 'toplot', 'frx', 'binsz', 'Mbp_distance', 'cm_distance');
     end
     
 end

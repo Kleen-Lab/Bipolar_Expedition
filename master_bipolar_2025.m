@@ -26,6 +26,7 @@ generate_lin_freq_table; % for later supp fig 1 plotting
 
 % run analysis save data for plotting for EC175 and EC183 (both have 16x16 subdural grid)
 fig3_EachVsAll('EC175');
+
 fig3_EachVsAll('EC183');
 % saves as ECXXX_fig3_data.mat
 % note, can run on any patients and component combination through
