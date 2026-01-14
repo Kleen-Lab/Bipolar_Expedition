@@ -423,7 +423,7 @@ ft=[2 5 10 20 50 100 200]; ftl=cellstr(num2str(ft'));
 
 figure(4); set(gcf,'color','w','position',[372 1 1297 400]);
 
-comps = {'grid', 'depth', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
     load(fullfile(data_results,[ comps{c} '_trm_data.mat'])); % change to /data/results/
