@@ -426,7 +426,7 @@ figure(4); set(gcf,'color','w','position',[372 1 1297 400]);
 comps = {'grid', 'depth', 'strips'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/Users/devonkrish/Desktop/KLEENLAB/bphold/newtest/' comps{c} '_trm_data.mat']); % change to /data/results/
+    load(fullfile(data_results,[ comps{c} '_trm_data.mat'])); % change to /data/results/
     trm_data_all{c} = trm_data;
 end
 
