@@ -80,7 +80,7 @@ pts_names = {'Pt. 1', 'Pt. 2', 'Pt. 3', 'Pt. 4', 'Pt. 5', 'Pt. 6', ...
 'Pt. 7', 'Pt. 8', 'Pt. 9', 'Pt. 10', 'Pt. 11', 'Pt. 12', 'Pt. 13', ...
 'Pt. 14', 'Pt. 15', 'Pt. 16'};
 
-all_mDiff_strips = nan(100, 22, length(pts_strips));
+all_mDiff_strips = nan(100, 43, length(pts_strips));
 
 figure;
 % Load all mDiff matrices from strips
@@ -233,7 +233,7 @@ pts_strips = {'EC133', 'EC175', 'EC183', 'EC186', 'EC187', 'EC196', ...
 all_mDiff_strips = nan(100, 43, length(pts_strips));
 
 for i = 1:length(pts_strips)
-    load(fullfile(data_results,['fix_depths_tent_' pts_strips{i} '.mat']));
+    load(fullfile(data_results,['fix_strips_tent_' pts_strips{i} '.mat']));
     all_mDiff_strips(:,:,i) = mDiff;
 end
 
