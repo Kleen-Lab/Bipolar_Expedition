@@ -28,10 +28,10 @@ end_pt = 4;   % Change to 4 for pts 1-4, 8 for pts 5-8, 12 for pts 9-12, etc.
 
 figure(1); set(gcf,'color','w','position',[372 1 1297 1337]);
 
-comps = {'grids', 'depths', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
@@ -157,10 +157,10 @@ end_pt = 16;   % Change to 4 for pts 1-4, 8 for pts 5-8, 12 for pts 9-12, etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure(2); set(gcf,'color','w','position',[372 1 1297 1337]);
-comps = {'grids', 'depths', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
@@ -310,10 +310,10 @@ end
 
 figure(3); set(gcf,'color','w','position',[372 1 1297 400]);
 
-comps = {'grids', 'depths', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
@@ -432,10 +432,10 @@ sgtitle('Aggregated: Mean Across All Patients', 'FontWeight', 'bold', 'FontSize'
 
 figure(4); set(gcf,'color','w','position',[372 1 1297 400]);
 
-comps = {'grids', 'depths', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
