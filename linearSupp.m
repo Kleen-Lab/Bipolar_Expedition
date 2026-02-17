@@ -20,7 +20,122 @@ stripsdist = [0, 10, 20];
 frxrange = [2 200];
 
 
+<<<<<<< HEAD
 % INSET plots
+=======
+% ORDER: grid depth strip (columns)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure(1); set(gcf,'color','w','position',[372 1 1297 1337]);
+
+comps = {'grid', 'depth', 'strip'};
+trm_data_all = cell(1,3);
+for c = 1:3
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
+    trm_data_all{c} = trm_data;
+end
+
+valid_pts = {};
+for p = 1:length(pts)
+    has_data = false;
+    for c = 1:3
+        pts_in_data = trm_data_all{c}.patients;
+        pt_idx = find(strcmp(pts_in_data, pts{p}));
+        if c == 1
+            data = trm_data_all{1}.grids;
+        elseif c == 2
+            data = trm_data_all{2}.depths;
+        else
+            data = trm_data_all{3}.strips;
+        end
+        if ~isempty(pt_idx) && ~isempty(data{1,pt_idx})
+            has_data = true;
+            break;
+        end
+    end
+    if has_data
+        valid_pts{end+1} = pts{p};
+    end
+end
+
+pts_to_plot = valid_pts(start_pt:min(end_pt, length(valid_pts)));
+
+for i = 1:length(pts_to_plot)
+    for c = 1:3 % 1=grids, 2=depths, 3=strips
+        subplot_idx = (i-1)*3 + c;
+        ax = subplot(length(pts_to_plot), 3, subplot_idx);
+       
+        if c == 1 % grids
+            data = trm_data_all{1}.grids;
+            dists = gridsdist;
+            comp_name = 'Grid Electrodes';
+        elseif c == 2 % depths
+            data = trm_data_all{2}.depths;
+            dists = depthsdist;
+            comp_name = 'Depth Electrodes';
+        else % strips
+            data = trm_data_all{3}.strips;
+            dists = stripsdist;
+            comp_name = 'Strip Electrodes';
+        end
+        
+
+        pts_in_data = trm_data_all{c}.patients;
+        pt_idx = find(strcmp(pts_in_data, pts_to_plot{i}));
+        
+        if ~isempty(pt_idx) && ~isempty(data{1,pt_idx})
+            % Plot ALL ribbons
+            for j = 1:length(dists)
+
+                if ~isempty(data{j,pt_idx}) && size(data{j,pt_idx}, 1) > 0 && size(data{j,pt_idx}, 2) > 0
+                    ribbons(frx,data{j,pt_idx},cm(max([1 dists(j)]),:),.5,'sem',0,0);
+                    set(gca,'xlim',frxrange,'xscale','log','xtick',ft,'XTickLabel',ftl);
+                    hold on;
+                end
+            end
+            
+            if c == 1 % grids
+                legend({'referential','', [num2str(gridsdist(2)) ' mm'],'', [num2str(gridsdist(3)) ' mm'],'', [num2str(gridsdist(4)) ' mm'],'', [num2str(gridsdist(5)) ' mm'],'', [num2str(gridsdist(6)) ' mm']''}, 'location','sw');
+            elseif c == 2 % depths
+                legend({'referential','', [num2str(depthsdist(2)) ' mm'],'', [num2str(depthsdist(3)) ' mm'],'', [num2str(depthsdist(4)) ' mm'],'', [num2str(depthsdist(5)) ' mm']''}, 'location','sw');
+            else % strips
+                legend({'referential','', [num2str(stripsdist(2)) ' mm'],'', [num2str(stripsdist(3)) ' mm']''}, 'location','sw');
+            end
+            
+
+            title(comp_name, 'FontWeight', 'normal', 'FontSize', 10);
+            
+            axis tight;
+            set(gca,'xlim',frxrange,'xscale','log','xtick',ft,'XTickLabel',ftl);
+            grid on;
+        else
+      
+            text(0.5,0.5,'No data','HorizontalAlignment','center');
+            set(gca,'xlim',[0 1],'ylim',[0 1],'XTick',[],'YTick',[]);
+            title(comp_name, 'FontWeight', 'normal', 'FontSize', 9);
+        end
+        
+
+        if c == 2
+            pos = get(ax, 'Position');
+
+            annotation('textbox', [pos(1), pos(2)+pos(4)+0.01, pos(3), 0.03], ...
+                'String', ['Pt. ' num2str(start_pt + i - 1)], ...
+                'HorizontalAlignment', 'center', ...
+                'VerticalAlignment', 'bottom', ...
+                'FontSize', 13, ...
+                'FontWeight', 'bold', ...
+                'EdgeColor', 'none', ...
+                'FitBoxToText', 'off');
+        end
+    end
+    
+    % Display patient name in terminal after completing each row
+    disp(['Pt. ' num2str(start_pt + i - 1) ' = ' pts_to_plot{i}]);
+end
+
+% INSET
+>>>>>>> 1f0402937bf7112c085d5761f31c1e67348bf1a8
 
 pts = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
        'EC219', 'EC220', 'EC221', 'EC222', 'EC131', 'EC143', 'EC157', 'EC162', 'EC168'};
@@ -44,11 +159,16 @@ end_pt = 4;   % Change to 4 for pts 1-4, 8 for pts 5-8, 12 for pts 9-12, etc.
 %% ORDER: grid depth strip (columns)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+<<<<<<< HEAD
 figure(1); set(gcf,'color','w','position',[372 1 1297 1337]);
 comps = {'grids', 'depths', 'strips'};
+=======
+figure(2); set(gcf,'color','w','position',[372 1 1297 1337]);
+comps = {'grid', 'depth', 'strip'};
+>>>>>>> 1f0402937bf7112c085d5761f31c1e67348bf1a8
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
@@ -197,10 +317,10 @@ end
 
 figure(3); set(gcf,'color','w','position',[372 1 1297 400]);
 
-comps = {'grids', 'depths', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
@@ -319,10 +439,10 @@ sgtitle('Aggregated: Mean Across All Patients', 'FontWeight', 'bold', 'FontSize'
 
 figure(4); set(gcf,'color','w','position',[372 1 1297 400]);
 
-comps = {'grids', 'depths', 'strips'};
+comps = {'grid', 'depth', 'strip'};
 trm_data_all = cell(1,3);
 for c = 1:3
-    load(['/data/results/' comps{c} '_trm_data.mat']);
+    load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
     trm_data_all{c} = trm_data;
 end
 
