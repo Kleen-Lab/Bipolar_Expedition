@@ -8,6 +8,10 @@ result_dir = getenv("RESULTS");
 pts = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
        'EC219', 'EC220', 'EC221', 'EC222', 'EC131', 'EC143', 'EC157', 'EC162', 'EC168'};
 
+start_pt = 1; % change to 1 for pts 1-4, 5 for pts 5-8, 9 for pts 9-12 etc.
+end_pt = 4; %change to 4 for pts 1-4, 8 for pts 5-8, 12 for pts 9-12 etc, 
+
+
 cm=cool(17);
 cm=[0 0 0;1 1 1;1 1 1;cm];
 frx = 2:2:200;
@@ -20,9 +24,7 @@ stripsdist = [0, 10, 20];
 frxrange = [2 200];
 
 
-<<<<<<< HEAD
 % INSET plots
-=======
 % ORDER: grid depth strip (columns)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -134,9 +136,6 @@ for i = 1:length(pts_to_plot)
     disp(['Pt. ' num2str(start_pt + i - 1) ' = ' pts_to_plot{i}]);
 end
 
-% INSET
->>>>>>> 1f0402937bf7112c085d5761f31c1e67348bf1a8
-
 pts = {'EC133', 'EC175', 'EC181', 'EC183', 'EC186', 'EC187', 'EC196', ...
        'EC219', 'EC220', 'EC221', 'EC222', 'EC131', 'EC143', 'EC157', 'EC162', 'EC168'};
 
@@ -151,21 +150,15 @@ gridsdist = [0, 4, 8, 12, 16, 20];
 stripsdist = [0, 10, 20];
 frxrange = [2 200];
 
-%%
-
-start_pt = 1; % Change to 1 for pts 1-4, 5 for pts 5-8, 9 for pts 9-12, etc.
-end_pt = 4;   % Change to 4 for pts 1-4, 8 for pts 5-8, 12 for pts 9-12, etc.
-
 %% ORDER: grid depth strip (columns)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-<<<<<<< HEAD
 figure(1); set(gcf,'color','w','position',[372 1 1297 1337]);
 comps = {'grids', 'depths', 'strips'};
-=======
+
 figure(2); set(gcf,'color','w','position',[372 1 1297 1337]);
 comps = {'grid', 'depth', 'strip'};
->>>>>>> 1f0402937bf7112c085d5761f31c1e67348bf1a8
+
 trm_data_all = cell(1,3);
 for c = 1:3
     load(fullfile(result_dir,[comps{c} '_trm_data.mat']));
