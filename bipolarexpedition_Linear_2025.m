@@ -263,7 +263,7 @@ for q = 1:3 %run 1:3 for all components
             end
 
             %% ECoG trace plots for increasing bipolar spacing (example patient)
-            if p==4
+            if (p==4) && (g1s2d3 == 1)
                 figure(5); set(gcf,'color','w','position',[1 187 1586 860])
                 %sp(6,2,(bpd+1)*2-1);
                 sp(4,6,bpd+1);
