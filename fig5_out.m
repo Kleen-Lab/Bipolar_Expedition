@@ -120,7 +120,7 @@ set(gca, 'GridAlpha', 0.35)
 %subplot6 = subplot('Position', [0.01, 0.255, 0.159, 0.1739]);
 %img2 = imread('/home/devkrish/Desktop/ec175.png');
 %imshow(img2);
-clearvars -except binzsave ft ftl;
+clearvars -except binzsave ft ftl data_results;
 
 binz = binzsave;
 
