@@ -8,7 +8,9 @@
 output_chs = [];
 output_widths = [];
 
-data_results= getenv("RESULTS");
+
+%data_results= getenv("RESULTS");
+data_results = '/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/bipolar_project_renamed/2023';
 
 conds = {'LL20', 'LL40', 'LL100', 'absDer'};
 
@@ -18,7 +20,8 @@ for c = 1:size(conds,2)
     % NOTE: these files are created when running
     % high_density_ecog_script.m
 
-    load(fullfile(data_results,conds{c},[conds{c} '.mat']));
+    %load(fullfile(data_results,conds{c},[conds{c} '.mat']));
+    load(fullfile(data_results,[conds{c} '.mat']));
 
     strx = permResultsCell;
     num_chs = zeros(1,size(strx,2));
@@ -34,8 +37,10 @@ for c = 1:size(conds,2)
         mean_width(i) = hd_width - subsamp_width;
     end
 
-    output_chs = [output_chs; num_chs];
-    output_widths = [output_widths; mean_width];
+    %output_chs = [output_chs; num_chs];
+    %output_widths = [output_widths; mean_width];
+    output_chs = [output_chs, num_chs'];
+    output_widths = [output_widths, mean_width'];
 
     disp(['DONE: ' conds(c)]);
 
@@ -49,7 +54,7 @@ figure;
 condition_labels = {'LL20', 'LL40', 'LL100', 'Absolute Derivative'};
 
 subplot(2,1,1);
-violinplot_with_lines(mean_width',condition_labels)
+violinplot_with_lines(mean_width_new,condition_labels)
 
 
 title('Differences in IED Duration', 'FontSize', 14);
@@ -57,7 +62,7 @@ ylabel('mean Width (ms)', 'FontSize',13);
 set(gcf, 'Color', 'w');
 
 subplot(2,1,2);
-violinplot_with_lines(num_chs',condition_labels)
+violinplot_with_lines(num_chs_new,condition_labels)
 
 
 title('Differences in IED Spatial Extent', 'FontSize', 14);
