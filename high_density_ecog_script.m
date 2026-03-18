@@ -58,8 +58,8 @@ saveName = {'LL20','LL40','LL100','absDer'};
 
 for index = 1:length(folderFiguresCell)
 
-    if ~exist(folderFiguresCell{index}, 'dir')
-        mkdir(folderFiguresCell{index});
+    if ~exist(folderPathCell{index}, 'dir')
+        mkdir(folderPath);
     end
 
     if doPlots
