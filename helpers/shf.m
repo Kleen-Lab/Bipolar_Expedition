@@ -1,2 +1,0 @@
-function shf
-shading flat

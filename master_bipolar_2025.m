@@ -30,7 +30,7 @@ fig3_EachVsAll('EC175');
 fig3_EachVsAll('EC183');
 % saves as ECXXX_fig3_data.mat
 % note, can run on any patients and component combination through
-% EachVsAll_cleaned2025.m script
+EachVsAll_cleaned2025.m %script
 
 % plot figure 3
 fig3_plot;
@@ -71,7 +71,7 @@ postHocStats;
 % absolute derivative data 
 
 high_density_ecog_script_ec133_abs_der_only;
-% high_density_ecog_script; % run on all patients
+high_density_ecog_script; % run on all patients
 
 %% Supplementary Linear figure (all patients individually)
 
