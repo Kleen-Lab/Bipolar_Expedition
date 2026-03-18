@@ -1,4 +1,74 @@
 
+
+% PLOT SUPPLEMENTARY FIGURE 2
+% Display changes in IED spatial and temporal extent for HD vs
+% subsampled conditions using different linelength window sizes
+% Script pulls directly from data saved from high_density_ecog.m script
+
+output_chs    = [];
+output_widths = [];
+
+data_results= getenv("RESULTS");
+conds = {'LL20', 'LL40', 'LL100', 'absDer'};
+
+for c = 1:numel(conds)
+    load(fullfile(data_results, [conds{c} '.mat']));
+    strx = permResultsCell;
+
+    num_chs    = NaN(1, numel(strx));
+    mean_width = NaN(1, numel(strx));
+
+    for i = 1:numel(strx)
+        hd_chs       = strx{i}.numSigChannels;
+        subsamp_chs  = strx{i}.numSigChannelsSub;
+        hd_width     = strx{i}.meanWidth;
+        subsamp_width= strx{i}.meanWidthSub;
+
+        num_chs(i)    = hd_chs    - subsamp_chs;
+        mean_width(i) = hd_width  - subsamp_width;
+    end
+
+    output_chs    = [output_chs;    num_chs];
+    output_widths = [output_widths; mean_width];
+    disp(['DONE: ' conds{c}]);
+end
+
+disp('output_widths size:'); disp(size(output_widths));
+disp('NaNs per condition:'); disp(sum(isnan(output_widths), 2));
+
+% Convert to cell arrays, stripping NaNs per condition
+condition_labels = {'LL20', 'LL40', 'LL100', 'Absolute Derivative'};
+
+width_cell = cell(1, numel(conds));
+chs_cell   = cell(1, numel(conds));
+
+for c = 1:numel(conds)
+    w = output_widths(c, :);
+    width_cell{c} = w(~isnan(w));
+
+    ch = output_chs(c, :);
+    chs_cell{c} = ch(~isnan(ch));
+end
+
+% Plot
+figure;
+
+subplot(2,1,1);
+violinplot_with_lines(width_cell, condition_labels);
+title('Differences in IED Duration', 'FontSize', 14);
+ylabel('Mean Width (ms)', 'FontSize', 13);
+
+subplot(2,1,2);
+violinplot_with_lines(chs_cell, condition_labels);
+title('Differences in IED Spatial Extent', 'FontSize', 14);
+ylabel('# of Channels Involved', 'FontSize', 13);
+
+set(gcf, 'Color', 'w');
+
+%% OLD VERSION HERE, for testing
+
+%{
+
 % PLOT SUPPLEMENTARY FIGURE 2
 % Display changes in IED spatial and temporal extent for HD vs
 % subsampled conditions using different linelength window sizes
@@ -8,7 +78,8 @@
 output_chs = [];
 output_widths = [];
 
-data_results= getenv("RESULTS");
+%data_results= getenv("RESULTS");
+data_results = '/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/bipolar_project_renamed/2023';
 
 conds = {'LL20', 'LL40', 'LL100', 'absDer'};
 
@@ -18,7 +89,7 @@ for c = 1:size(conds,2)
     % NOTE: these files are created when running
     % high_density_ecog_script.m
 
-    load(fullfile(data_results,conds{c},[conds{c} '.mat']));
+    load(fullfile(data_results,[conds{c} '.mat']));
 
     strx = permResultsCell;
     num_chs = zeros(1,size(strx,2));
@@ -40,6 +111,11 @@ for c = 1:size(conds,2)
     disp(['DONE: ' conds(c)]);
 
 end
+
+disp(size(output_widths))  % Should be 4 x N
+disp(sum(isnan(output_widths), 2))
+
+%%
 
 mean_width_new = output_widths;
 num_chs_new = output_chs;
@@ -63,4 +139,7 @@ violinplot_with_lines(num_chs',condition_labels)
 title('Differences in IED Spatial Extent', 'FontSize', 14);
 ylabel('# of Channels Involved', 'FontSize',13);
 set(gcf, 'Color', 'w');
+
+
+%}
 
