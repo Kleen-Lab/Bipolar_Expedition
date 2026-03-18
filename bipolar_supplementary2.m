@@ -9,8 +9,7 @@ output_chs = [];
 output_widths = [];
 
 
-%data_results= getenv("RESULTS");
-data_results = '/Volumes/SPIKE/bipolar_project/bipolar_SeaHorse/devkrish/bipolar_project_renamed/2023';
+data_results= getenv("RESULTS");
 
 conds = {'LL20', 'LL40', 'LL100', 'absDer'};
 
